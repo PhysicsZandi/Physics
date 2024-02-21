@@ -1,0 +1,116 @@
+\begin{pycode}
+import sympy as sy
+def plot1(x, f, rangex, rangey, fig, leg, negx, negy):
+    rangexx = rangex
+    rangeyy = rangey
+    if negx == True:
+        rangexx = 0
+    if negy == True:
+        rangeyy = 0
+    x = sy.Symbol('x')
+    p = sy.plot((f, (x, -rangexx, rangex)), ylim=[-rangeyy, rangey], legend= leg, show=False, line_color='#00AFB3')
+    p.save(f'fig/fig{fig}.pgf')
+    print(r'\input{fig/fig'+ rf'{fig}' + r'.pgf}')
+
+def plot2(x, f, g, rangex, rangey, fig, leg, negx, negy):
+    rangexx = rangex
+    rangeyy = rangey
+    if negx == True:
+        rangexx = 0
+    if negy == True:
+        rangeyy = 0
+    x = sy.Symbol('x')
+    p = sy.plot((f, (x, -rangexx, rangex)), (g, (x, -rangexx, rangex)), ylim=[-rangeyy, rangey], legend= leg, show=False, line_color='#00AFB3')
+    p[0].line_color='red'
+    p[1].line_color='blue'
+    p.save(f'fig/fig{fig}.pgf')
+    print(r'\input{fig/fig'+ rf'{fig}' + r'.pgf}')
+
+def plot3(x, f, g, h, rangex, rangey, fig, leg, negx, negy):
+    rangexx = rangex
+    rangeyy = rangey
+    if negx == True:
+        rangexx = 0
+    if negy == True:
+        rangeyy = 0
+    x = sy.Symbol('x')
+    p = sy.plot((f, (x, -rangexx, rangex)), (g, (x, -rangexx, rangex)), (h, (x, -rangexx, rangex)), ylim=[-rangeyy, rangey], legend= leg, show=False, line_color='#00AFB3')
+    p[0].line_color='red'
+    p[1].line_color='violet'
+    p[2].line_color='blue'
+    p.save(f'fig/fig{fig}.pgf')
+    print(r'\input{fig/fig'+ rf'{fig}' + r'.pgf}')
+
+def plot4(x, f, g, h, l, rangex, rangey, fig, leg, negx, negy):
+    rangexx = rangex
+    rangeyy = rangey
+    if negx == True:
+        rangexx = 0
+    if negy == True:
+        rangeyy = 0
+    x = sy.Symbol('x')
+    p = sy.plot((f, (x, -rangexx, rangex)), (g, (x, -rangex, rangex)), (h, (x, -rangex, rangex)), (l, (x, -rangex, rangex)), ylim=[-rangeyy, rangey], legend= leg, show=False, line_color='#00AFB3')
+    p[3].line_color='black'
+    p.save(f'fig/fig{fig}.pgf')
+    print(r'\input{fig/fig'+ rf'{fig}' + r'.pgf}')
+
+def der(y, x):
+    x = sy.Symbol(x) 
+    derivative = sy.diff(y, x)
+    return sy.latex(derivative) 
+ 
+def indint(integrand, x): 
+    x = sy.Symbol(x) 
+    integral = sy.integrate(integrand,x) 
+    return sy.latex(integral) 
+
+def defint(integrand, x, min, max): 
+    x = sy.Symbol(x) 
+    integral = sy.integrate(integrand, (x, min, max)) 
+    return sy.latex(integral) 
+
+def infint(integrand, x): 
+    x = sy.Symbol(x) 
+    integral = sy.integrate(integrand, (x, float('-inf'), float('inf'))) 
+    return sy.latex(integral) 
+
+def infzint(integrand, x): 
+    x = sy.Symbol(x) 
+    integral = sy.integrate(integrand, (x, 0, float('inf'))) 
+    return sy.latex(integral) 
+
+def ode(ode, y, x): 
+    x = sy.Symbol(x) 
+    y = sy.Function(y) 
+    lhs, rhs = ode.split('=') 
+    ode = sy.Eq(sy.S(lhs),sy.S(rhs)) 
+    sol = sy.dsolve(ode,y(x)) 
+    return sy.latex(sol) 
+
+# \py{ode("Derivative(y(x),x,x) + y(x) = 0", "y", "x")} ~.
+ 
+def odeic(ode, y, x, ic): 
+    x  = sy.Symbol(x) 
+    y  = sy.Function(y) 
+    lhs,rhs = ode.split('=') 
+    ode = sy.Eq(sy.S(lhs),sy.S(rhs)) 
+    sol = sy.dsolve(ode,y(x), ics= sy.S(ic)) 
+    return sy.latex(sol) 
+
+#\py{odeic("Derivative(y(x),x,x) + y(x) = 0", "y", "x", "{y(0):1, y(x).diff(x).subs(x, 0): 0}")} ~.
+
+def matrixmult(A, B):
+    C = A*B
+    return sy.latex(C)
+
+def Taylor(x, f, point, order):
+    x = sy.Symbol('x')
+    ts = sy.series(f, x, point, order) 
+    return sy.latex(ts)
+
+def limit(x, f, point):
+    x = sy.Symbol('x')
+    lim = sy.limit(f, x, point) 
+    return sy.latex(lim)
+
+\end{pycode}
