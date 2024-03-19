@@ -1,5 +1,7 @@
-# Theoretical Physics
+# BetaProjects
 
-Hi, here you can find some mathematical notes about topics involving theoretical physics, taken during the master degree. 
-
-1. [On mathematics for physics: logic and what follows from that](https://github.com/PhysicsZandi/Physics/blob/main/source/math/math.pdf) (work in progress),
+In this repository, you will find implementation of several python projects:
+1. [Computation in general relativity](https://github.com/PhysicsZandi/BetaProjects/blob/main/source/general_relativity),
+2. [Computation in complex networks](https://github.com/PhysicsZandi/BetaProjects/blob/main/source/complex_networks),
+3. [Computation in nuclear physics](https://github.com/PhysicsZandi/BetaProjects/blob/main/source/nuclear_physics).
+ 
